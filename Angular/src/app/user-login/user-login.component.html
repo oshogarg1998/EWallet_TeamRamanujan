@@ -1,0 +1,36 @@
+<h3><i class='fas fa-wallet' style='font-size:36px'></i>eWallet</h3>
+<div class="cardalign">
+  <div class="card">
+    <div [ngSwitch]="notification">
+      <div *ngSwitchCase="'password'" class="alert alert-danger" role="alert"><small>Your username or password
+          invalid</small></div>
+      <div *ngSwitchCase="'register'" class="alert alert-danger" role="alert"><small>Not registered with this
+          Email</small>
+      
+        
+        </div>
+
+      <div *ngSwitchCase="'right'"></div>
+    </div>
+    <form #employeeLogin="ngForm" novalidate>  
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" #username="ngModel" required class="form-control"
+          [class.is-invalid]="username.invalid && username.touched" style="width:500px;height:30px;" name="username"
+          [(ngModel)]=userLoginModel.userName>
+        <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small>
+      </div>
+      <div class="form-group">
+        <label for="passward">Password</label>
+        <input type="password" #passward="ngModel" required class="form-control"
+          [class.is-invalid]="passward.invalid && passward.touched" style="width:500px;height:30px;" name="firstname"
+          [(ngModel)]=userLoginModel.password>
+        <small class="text-danger" [class.d-none]="passward.valid || passward.untouched">Password is required</small>
+      </div>
+      <button [disabled]="employeeLogin.form.invalid" (click)="clicked()" class="btn btn-primary btn-sm float-right"
+        type="submit">Login</button>
+    </form>
+
+   
+    <a style="margin-top: 20px;" routerLink="/user-registration" class="btn btn-outline-primary btn-sm">Register</a>
+  </div>
